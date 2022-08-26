@@ -1,13 +1,28 @@
 import React from 'react';
-import {useState} from 'react';
+// import {useState} from 'react';
+import { useDispatch } from 'react-redux';
+import { editStaff } from './staffSlice';
 
-const EditStaff = () => {
+const EditStaff = ({staffInfo}) => {
 
-    
+  const dispatch = useDispatch();
+const handleEditStaff = (values) => {
+   dispatch(editStaff({
+    id: staffInfo.id,
+    name: values.name,
+    doB: values.doB,
+    salaryScale: values.salaryScale,
+    startDate: values.startDate,
+    annualLeave: values.annualLeave,
+    overTime: values.overTime
+
+   }))
+}
+
 
     return (
         <div>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
  Edit 
 </button>
 
@@ -19,35 +34,37 @@ const EditStaff = () => {
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div className="modal-body">
-      <form>
+      <form submit={handleEditStaff}>
         <div className="form-group">
-          <label for="">Họ và tên: </label>
-          <input type="text"
+          <label >Họ và tên: </label>
+          <input type="text" defaultValue={staffInfo?.name}
+           
             className="form-control"  id="name" /> 
                          
         </div>
         <div className="form-group">
-          <label for="">Ngày sinh: </label>
-          <input type="date"  
+          <label >Ngày sinh: </label>
+          <input type="date" defaultValue={staffInfo?.doB}
             className="form-control"  id="birthday" />           
             
         </div>
         <div className="form-group">
-          <label for="">Hệ số Lương: </label>
-          <input type="number"  
+          <label >Hệ số Lương: </label>
+          <input type="number"  defaultValue={staffInfo?.salaryScale}
             className="form-control"  id="salaryScale" min='0'/> 
              
         </div>
         <div className="form-group">
-          <label for="">Ngày vào công ty: </label>
-          <input type="date" 
+          <label >Ngày vào công ty: </label>
+          <input type="date" defaultValue={staffInfo?.startDate}
             className="form-control"  id="startDate"  />   
             
         </div>
        
           <div className="form-group">
-            <label for="department">Phòng ban:</label>
-            <select className="form-control" id="department" >
+            <label>Phòng ban:</label>
+            <select className="form-control" id="department"  defaultValue={staffInfo?.department}
+            >
               <option value='Sale'>Sale</option>
               <option value='HR'>HR</option>
               <option value='Marketing'>Marketing</option>
@@ -57,25 +74,25 @@ const EditStaff = () => {
             
           </div>
           <div className="form-group">
-          <label for="">Số ngày nghỉ còn lại: </label>
-          <input type="number" 
+          <label >Số ngày nghỉ còn lại: </label>
+          <input type="number" defaultValue={staffInfo?.annualLeave}
             className="form-control"  id="annualLeave" min='0'  />   
             
         </div>
         <div className="form-group">
-          <label for="">Số ngày làm thêm: </label>
-          <input type="number"
+          <label >Số ngày làm thêm: </label>
+          <input type="number" defaultValue={staffInfo?.overTime}
             className="form-control"  id="overTime" min='0' /> 
             
         </div>
         <div className="form-group">
-          <label for="">Hình đại diện</label>
+          <label >Hình đại diện</label>
           <input type="file"  placeholder="/assets/images/alberto.png"
            className="form-control-file" accept=".gif,.jpg,.jpeg,.png,.doc,.docx" name="file" id="file" />          
         </div>
 
         
-        <button type="submit" className="btn btn-info text-center mt-2">Edit Staff</button>
+        <button type="submit" className="btn btn-info text-center mt-2" >Edit Staff</button>
       </form>
       </div>
      

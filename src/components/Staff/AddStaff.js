@@ -14,7 +14,7 @@ const schema = yup.object().shape({
     .required("Vui lòng nhập username")
     .max(50, "Username tối đa 50 ký tự")
     .min(5, "Username tối thiếu 5 ký tự"),
-    birthday: yup    
+    doB: yup    
     .string()
     .required('Vui lòng nhập ngày sinh'),
     salaryScale: yup
@@ -64,7 +64,7 @@ function AddStaff(props) {
     dispatch(addNewStaff({
       id: uuidv4(),
       name: data.name,
-      birthday: data.birthday,     
+      doB: data.doB,     
       salaryScale: data.salaryScale,
       startDate: data.startDate,
       department: data.department,
@@ -97,9 +97,9 @@ function AddStaff(props) {
         </div>
         <div className="form-group">
           <label>Ngày sinh: </label>
-          <input type="date"  {...register('birthday')}
+          <input type="date"  {...register('doB')}
             className="form-control"  id="birthday" />           
-            {errors.birthday && <p className="error">{errors.birthday?.message}</p>}          
+            {errors.doB && <p className="error">{errors.doB?.message}</p>}          
         </div>
         <div className="form-group">
           <label>Hệ số Lương: </label>

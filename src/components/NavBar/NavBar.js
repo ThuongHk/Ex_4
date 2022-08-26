@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Navbar, NavbarBrand} from 'reactstrap';
+import {Navbar} from 'reactstrap';
 import {useState} from 'react';
 import './Navbar.css';
 

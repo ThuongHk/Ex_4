@@ -1,5 +1,5 @@
 // import dateFormat from "dateformat";
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 // import staffSlice from './staffSlice';
 import {Link} from 'react-router-dom';
 import {useState} from 'react';
@@ -8,18 +8,26 @@ import SearchStaff from './SearchStaff';
 import {showDataListStaff} from '../../redux/selector';
 import AddStaff from './AddStaff';  // ko import component addStaff vào component nay anh ạ
 import './Staff.css';
+import { delStaff } from './staffSlice';
 function Staff() {
   const [column, setColumn] = useState('col-2 mt-2')
+
+  const dispatch = useDispatch();
 
   const showStaff = useSelector(showDataListStaff)
   // const showSearchStaff = useSelector()
   console.log(showStaff);
+  
+  // const handleDeleteStaff = (e) => {
+  //   // const parentElement = document.getElementById('parentElement');
+  //   const childElement = e.target.parentElement.parentElement
+  // dispatch(delStaff(childElement.id)) }
 
   const staffList = showStaff.map((staff) => {
     return ( 
         <div className={column}  key={staff.id}>
           <Link className='close1' to={`/staff/${staff.id}`}>
-            <button className='btn btn-warning btn-sm close2' title='xóa'><span className='span1'>&times; </span> </button>
+            <button className='btn btn-warning btn-sm close2' title='xóa' ><span className='span1'>&times; </span> </button>
             <Card style = {{backgroundColor: '#C6E5EE', cursor: 'pointer'}} >    
               <CardImg  src={staff.image} alt={staff.name}/>
               <CardBody>              

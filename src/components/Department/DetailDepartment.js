@@ -23,7 +23,7 @@ const DetailDepartment = () => {
     })
     return (
         <div className='container-fluid'>
-            <div className='row'>{show1}</div>
+            <div className='row mb-5 mt-3'>{show1}</div>
             <div className='row'>{show2Departments.map(staff =>{
                 return(
                       <div className='col-md-2 col-sm-3 col-xs-12' key={staff.id}>

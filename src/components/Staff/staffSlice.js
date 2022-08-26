@@ -38,7 +38,18 @@ const staffSlice = createSlice({
         state.status = 'success';
         state.allStaff.push(action.payload);
       })
-    }
+      .addCase(editStaff.fulfilled, (state, action) =>{
+        state.status = 'success';
+        state.allStaff = action.payload;
+      })
+
+    //   .addCase(delStaff.fulfilled, (state, action) => {
+    //     // state.staffs.filter((message) => message.id !== action.payload)
+    //     console.log({state, action})
+    //     state.status = "success";
+    //     state.staffs = action.payload;
+    // })
+  }
 })
 
 export const getStaffs = createAsyncThunk('staff/getStaff', async ()=>{
@@ -59,4 +70,30 @@ export const addNewStaff = createAsyncThunk('staff/addNewStaff', async (newStaff
     return data
     
 })
+
+export const editStaff = createAsyncThunk('staffs/editStaff',  async (id) => {    
+  const res = fetch('https://nodejstesthatn.herokuapp.com/', {
+  method: 'PATCH',
+  body: JSON.stringify(staffInfo),
+  headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+  },
+  })
+ const data = await res.json();
+ return data
+  });
+
+// export const delStaff = createAsyncThunk (
+//   'staffs/delStaff',
+//   async (staffId) => {    
+//   const res = fetch('https://nodejstesthatn.herokuapp.com/' + '/' + staffId, {
+//   method: 'DELETE',
+//   headers: {
+//       "Content-Type": "application/json"
+//   }
+//   }).then(data => data.json())
+//   return res
+//   }
+// );
 export default staffSlice;

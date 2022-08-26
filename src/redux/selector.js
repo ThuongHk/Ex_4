@@ -2,6 +2,7 @@ import { createSelector} from '@reduxjs/toolkit';
 export const listStaffSelector = state => state.staffList.allStaff;
 export const listStaffSearch = state => state.staffList.searchStaff;
 export const listDepartmentSelector  = state => state.departmentList.departments;
+export const listSalarySelector = state => state.salaryStore.salary;
 
 
 
