@@ -71,7 +71,7 @@ export const addNewStaff = createAsyncThunk('staff/addNewStaff', async (newStaff
     
 })
 
-export const editStaff = createAsyncThunk('staffs/editStaff',  async (id) => {    
+export const editStaff = createAsyncThunk('staffs/editStaff',  async (staffInfo) => {    
   const res = fetch('https://nodejstesthatn.herokuapp.com/', {
   method: 'PATCH',
   body: JSON.stringify(staffInfo),
