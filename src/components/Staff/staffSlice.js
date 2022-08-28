@@ -19,6 +19,9 @@ const staffSlice = createSlice({
         addStaff: (state, action) =>{            
             state.addStaff.push(action.payload)
             console.log(action.payload);
+        },
+        getStaffs: (state, action) =>{
+          state.allStaff = action.payload;
         }
     },
     extraReducers: builder => {
@@ -28,8 +31,11 @@ const staffSlice = createSlice({
       })
       .addCase(getStaffs.fulfilled, (state, action) =>{
         state.status = 'success';
+        console.log('đã vào đây');
         state.allStaff = action.payload
+
         console.log(action.payload);
+
       })
       .addCase(getStaffs.rejected, (state, action) =>{
         state.status = 'failed'
@@ -53,7 +59,7 @@ const staffSlice = createSlice({
 })
 
 export const getStaffs = createAsyncThunk('staff/getStaff', async ()=>{
-    const res = await fetch('https://nodejstesthatn.herokuapp.com/');
+    const res = await fetch('https://nodejstesthatn.herokuapp.com/staffs');
     const data = await res.json();
     console.log(data);
     return data
@@ -72,7 +78,8 @@ export const addNewStaff = createAsyncThunk('staff/addNewStaff', async (newStaff
 })
 
 export const editStaff = createAsyncThunk('staffs/editStaff',  async (staffInfo) => {    
-  const res = fetch('https://nodejstesthatn.herokuapp.com/', {
+  console.log(staffInfo);
+  const res = fetch('https://nodejstesthatn.herokuapp.com/staffs' , {
   method: 'PATCH',
   body: JSON.stringify(staffInfo),
   headers: {
