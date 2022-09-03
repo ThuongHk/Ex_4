@@ -11,7 +11,7 @@ import Salary from './components/Salary/Salary';
 import Staff from './components/Staff/Staff';
 import NotFound from './components/NotFound/NotFound';
 import DetailStaff from './components/Staff/DetailStaff';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import store from './redux/store';
 import DetailDepartment from './components/Department/DetailDepartment';
 
